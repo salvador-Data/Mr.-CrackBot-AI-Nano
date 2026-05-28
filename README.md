@@ -1,4 +1,7 @@
-![MrCrackBotAI](docs/screenshots/mrcatbar2.webp)
+<p align="center">
+  <img src="docs/images/mr-pac-bot-product.png" alt="Mr. Pac-Bot — Jetson Nano pocket lab enclosure (102×78×30 mm)" width="560"/>
+  <br/><sub><strong>Mr. Pac-Bot</strong> — CYD 2.8″ + Jetson Nano 4GB pocket shell. STLs → <a href="hardware/README.md">hardware/</a></sub>
+</p>
 
 # Mr. CrackBot AI Nano
 
