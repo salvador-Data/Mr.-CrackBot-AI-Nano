@@ -7,7 +7,7 @@
 
 **Status:** Early development — lab/simulation mode works on Windows and Linux CI; Jetson hardware path requires monitor-mode Wi‑Fi tools.
 
-Mr. CrackBot AI Nano is a Jetson Nano–oriented project for **authorized** Wi‑Fi security research: handshake capture, wordlist generation, and GPU hashcat cracking. Use only on networks you own or have written permission to test.
+**Hacker Planet LLC** · Philadelphia, PA — co-founded by **Andy Klwal** and **Pat**. Mr. CrackBot AI Nano is a Jetson Nano–oriented project for **authorized** Wi‑Fi security research: handshake capture, wordlist generation, and GPU hashcat cracking. Use only on networks you own or have written permission to test.
 
 Part of the **Hacker Planet** toolkit → [CyberThreatGotchi ecosystem](https://github.com/salvador-Data/cyberThreatGotchi/blob/main/docs/ECOSYSTEM.md).
 
