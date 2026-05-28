@@ -1,13 +1,20 @@
+from __future__ import annotations
+
+from pathlib import Path
+
 from ai.password_model import PasswordGenerator
 
+
 class WordlistManager:
-    def __init__(self):
+    def __init__(self) -> None:
         self.generator = PasswordGenerator()
 
-    def generate_wordlist(self, features):
-        prompt = f"SSID: {features['ssid']}, BSSID: {features['bssid_prefix']}"
+    def generate_wordlist(self, features: dict) -> str:
+        ssid = features.get("ssid", "network")
+        bssid_prefix = features.get("bssid_prefix", "00:11:22")
+        prompt = f"SSID: {ssid}, BSSID: {bssid_prefix}"
         words = self.generator.generate(prompt)
-        wordlist_path = "data/wordlists/generated.txt"
-        with open(wordlist_path, "w") as file:
-            file.write("\n".join(words))
-        return wordlist_path
+        wordlist_path = Path("data/wordlists/generated.txt")
+        wordlist_path.parent.mkdir(parents=True, exist_ok=True)
+        wordlist_path.write_text("\n".join(words), encoding="utf-8")
+        return str(wordlist_path)

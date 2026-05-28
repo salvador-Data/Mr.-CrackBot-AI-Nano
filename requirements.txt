@@ -1,7 +1,10 @@
-pygame
-transformers
-torch
-kivy
-requests
-aiofiles
+# Core (dev + Jetson workflow)
+pyyaml>=6.0.1
+aiofiles>=23.2.1
+requests>=2.31.0
 
+# UI (optional on headless Jetson)
+pygame>=2.5.0
+
+# Dev / CI
+pytest>=8.0.0

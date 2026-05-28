@@ -73,6 +73,11 @@ class MainWindow:
     def run(self):
         self.root.mainloop()
 
+    async def run_async(self):
+        import asyncio
+
+        await asyncio.get_event_loop().run_in_executor(None, self.run)
+
 
 # Run the UI
 if __name__ == "__main__":

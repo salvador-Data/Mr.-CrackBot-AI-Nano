@@ -6,8 +6,8 @@ def create_directories():
     Ensure all required directories are created during setup.
     """
     directories = [
-        "data/wordlists",
-        "data/captures",
+        os.path.join("data", "wordlists"),
+        os.path.join("data", "captures"),
         "logs",
         "custom_wordlists",
         "screenshots",
@@ -68,10 +68,16 @@ def download_and_extract_wordlists():
 
 def ensure_dependencies():
     """
-    Install necessary dependencies like MegaCMD.
+    Install megatools on Debian/Ubuntu when available (optional).
     """
-    print("[*] Installing MegaCMD for downloading...")
-    subprocess.run(["sudo", "apt-get", "install", "-y", "megatools"], check=True)
+    if os.name != "posix":
+        print("[*] Skipping megatools install on non-Linux hosts.")
+        return
+    print("[*] Installing megatools for downloading (optional)...")
+    subprocess.run(
+        ["sudo", "apt-get", "install", "-y", "megatools", "p7zip-full"],
+        check=False,
+    )
 
 def install_requirements():
     """
@@ -96,5 +102,8 @@ if __name__ == "__main__":
     print("[*] Installing Python requirements...")
     install_requirements()
 
-    print("[*] Downloading, extracting, and combining RockYou2024 wordlists...")
-    download_and_extract_wordlists()
+    if os.environ.get("MR_CRACKBOT_SKIP_WORDLIST_DOWNLOAD", "").strip() in ("1", "true", "yes"):
+        print("[*] Skipping RockYou2024 download (MR_CRACKBOT_SKIP_WORDLIST_DOWNLOAD=1).")
+    else:
+        print("[*] Downloading, extracting, and combining RockYou2024 wordlists...")
+        download_and_extract_wordlists()

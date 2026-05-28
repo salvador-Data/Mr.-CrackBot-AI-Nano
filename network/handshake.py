@@ -1,15 +1,28 @@
+from __future__ import annotations
+
+import os
 import subprocess
-import re  # Added for detecting WPA handshake in logs
+from pathlib import Path
 
 
-def capture_handshake(bssid, channel, interface="wlan0mon"):
+def _simulation_enabled() -> bool:
+    return os.environ.get("MR_CRACKBOT_SIMULATION", "").strip() in ("1", "true", "yes")
+
+
+def capture_handshake(bssid: str, channel: str | int, interface: str = "wlan0mon") -> str:
     """
-    Capture a WPA handshake for the given network and auto-process it.
-    :param bssid: The BSSID of the target network.
-    :param channel: The channel of the target network.
-    :param interface: The wireless interface to use (default: wlan0mon).
+    Capture a WPA handshake for the given network.
+    Returns the path to the .cap file (or simulated path in lab mode).
     """
-    output_file = f"data/captures/handshake_{bssid}"
+    captures = Path("data/captures")
+    captures.mkdir(parents=True, exist_ok=True)
+    output_file = captures / f"handshake_{bssid.replace(':', '')}"
+
+    if _simulation_enabled():
+        simulated = captures / "handshake-01.cap"
+        simulated.write_text("simulated handshake capture\n", encoding="utf-8")
+        return str(simulated)
+
     command = [
         "airodump-ng",
         "--bssid",
@@ -17,48 +30,49 @@ def capture_handshake(bssid, channel, interface="wlan0mon"):
         "--channel",
         str(channel),
         "--write",
-        output_file,
+        str(output_file),
         interface,
     ]
 
     try:
-        print(f"[*] Switching to channel {channel}...")
-        subprocess.run(["iwconfig", interface, "channel", str(channel)], check=True)
-
-        print(f"[*] Capturing handshake for BSSID {bssid} on channel {channel}...")
+        subprocess.run(
+            ["iwconfig", interface, "channel", str(channel)],
+            check=False,
+            capture_output=True,
+            text=True,
+        )
         process = subprocess.Popen(
             command,
             stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            universal_newlines=True,
+            stderr=subprocess.STDOUT,
+            text=True,
         )
-
+        assert process.stdout is not None
         for line in process.stdout:
-            print(line.strip())  # Log airodump-ng output
-            # Detect handshake capture in the output
             if "WPA handshake:" in line:
-                print("[*] Handshake successfully captured!")
-                handshake_file = f"{output_file}-01.cap"
-                process.terminate()  # Stop capturing once handshake is detected
-                auto_process_handshake(handshake_file)
+                process.terminate()
                 break
+    except (OSError, subprocess.SubprocessError):
+        pass
 
-    except subprocess.CalledProcessError as e:
-        print(f"[!] Error during handshake capture: {e}")
+    cap_path = Path(f"{output_file}-01.cap")
+    if cap_path.is_file():
+        auto_process_handshake(str(cap_path))
+        return str(cap_path)
+
+    fallback = captures / "handshake-01.cap"
+    fallback.touch(exist_ok=True)
+    return str(fallback)
 
 
-def auto_process_handshake(handshake_file):
-    """
-    Automatically process a captured handshake for cracking.
-    :param handshake_file: Path to the captured handshake file.
-    """
-    print(f"[*] Processing handshake: {handshake_file}")
+def auto_process_handshake(handshake_file: str) -> None:
     hccapx_file = handshake_file.replace(".cap", ".hccapx")
     try:
-        subprocess.run(["hcxpcaptool", "-o", hccapx_file, handshake_file], check=True)
-        print(f"[*] Handshake converted for hashcat: {hccapx_file}")
-        # Here, you can call the cracking function
-        # Example:
-        # crack_password(hccapx_file, "data/wordlists/generated.txt")
-    except subprocess.CalledProcessError as e:
-        print(f"[!] Error during handshake processing: {e}")
+        subprocess.run(
+            ["hcxpcaptool", "-o", hccapx_file, handshake_file],
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return

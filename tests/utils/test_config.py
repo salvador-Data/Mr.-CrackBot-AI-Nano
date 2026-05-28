@@ -1,10 +1,17 @@
 import os
-import pytest
-from utils.config import ensure_directories, check_prerequisites
+import shutil
+
+from utils.config import check_prerequisites, ensure_directories
+
 
 def test_ensure_directories():
     ensure_directories()
-    directories = ["data/wordlists", "data/captures"]
-    for directory in directories:
-        assert os.path.exists(directory)
-        os.rmdir(directory)
+    for directory in ("data/wordlists", "data/captures", "temp"):
+        assert os.path.isdir(directory)
+    shutil.rmtree("data", ignore_errors=True)
+    shutil.rmtree("temp", ignore_errors=True)
+
+
+def test_check_prerequisites_simulation_mode(monkeypatch):
+    monkeypatch.setenv("MR_CRACKBOT_SIMULATION", "1")
+    check_prerequisites()

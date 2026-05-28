@@ -1,8 +1,13 @@
-import pygame
+import os
 import time
 
+import pygame
+
+
 def run_intro():
-    # Initialize pygame
+    if os.environ.get("MR_CRACKBOT_SKIP_INTRO", "").strip() in ("1", "true", "yes"):
+        return
+
     pygame.init()
 
     # Screen dimensions
