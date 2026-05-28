@@ -6,6 +6,8 @@
 
 Mr. CrackBot AI Nano is a Jetson Nano–oriented project for **authorized** Wi‑Fi security research: handshake capture, wordlist generation, and GPU hashcat cracking. Use only on networks you own or have written permission to test.
 
+Part of the **Hacker Planet** toolkit → [CyberThreatGotchi ecosystem](https://github.com/salvador-Data/cyberThreatGotchi/blob/main/docs/ECOSYSTEM.md).
+
 ## Features (target)
 
 - Heuristic + optional AI wordlist generation (`MR_CRACKBOT_USE_AI=1` + `requirements-jetson.txt`)
