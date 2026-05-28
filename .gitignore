@@ -58,6 +58,9 @@ hashcat.restore
 screenshots/
 docs/screenshots/
 
+# PlatformIO (Cardputer firmware)
+cardputer/.pio/
+
 # Miscellaneous
 *.bak
 *.swp

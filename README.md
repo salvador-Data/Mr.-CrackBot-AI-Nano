@@ -18,7 +18,9 @@ Part of the **Hacker Planet** toolkit → [CyberThreatGotchi ecosystem](https://
 | [CyberThreatGotchi](https://github.com/salvador-Data/cyberThreatGotchi) | Defensive edge sensor + audit logs |
 | [Bjorn](https://github.com/salvador-Data/Bjorn) | Pi assessment |
 | **Mr.-CrackBot-AI-Nano** (this repo) | Authorized lab wordlists |
+| [Mr.-CrackBot-AI-CYD](https://github.com/salvador-Data/Mr.-CrackBot-AI-CYD) | CYD touch field firmware |
 | [M5_OS-Cardputer](https://github.com/salvador-Data/M5_OS-Cardputer) | Portable UI |
+| **cardputer/** (this repo) | M5 Cardputer QWERTY lab UI |
 
 CrackBot stays in the **lab VLAN**. CTG monitors the **production/homelab edge** — complementary, not interchangeable.
 
