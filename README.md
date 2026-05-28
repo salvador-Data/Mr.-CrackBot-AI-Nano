@@ -51,7 +51,9 @@ python main.py --skip-intro
 
 ## Hardware
 
-Bill of materials: Jetson Nano 4GB, USB Wi‑Fi adapter (monitor mode), CYD 2.8" touchscreen, and battery pack.
+Bill of materials: Jetson Nano 4GB, USB Wi‑Fi adapter (monitor mode), CYD 2.8" touchscreen (UI shell only), and battery pack.
+
+**Shop:** Bench lab assembled **$449** (`crackbotBench`) — not a CYD-only product. CYD field builds from **$79.99** are separate SKUs. See [docs/PRICING.md](docs/PRICING.md).
 
 **3D print files:** `hardware/stl/pocket/` (front, rear, clip). Regenerate with `python hardware/generate_stl.py`. COD clip + wall dock: `hardware/stl/accessories/` (`--variant all`). See [hardware/README.md](hardware/README.md).
 
