@@ -48,7 +48,9 @@ python main.py --skip-intro
 
 ## Hardware
 
-See the bill of materials in this README’s history: Jetson Nano 4GB, USB Wi‑Fi adapter (monitor mode), touchscreen, and battery pack.
+Bill of materials: Jetson Nano 4GB, USB Wi‑Fi adapter (monitor mode), CYD 2.8" touchscreen, and battery pack.
+
+**3D print files:** `hardware/stl/pocket/` (front, rear, clip). Regenerate with `python hardware/generate_stl.py`. COD clip + wall dock: `hardware/stl/accessories/` (`--variant all`). See [hardware/README.md](hardware/README.md).
 
 ## Wordlists
 
