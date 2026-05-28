@@ -16,7 +16,7 @@ Mr. CrackBot AI Nano is a Jetson Nano–oriented project for **authorized** Wi�
 ## Quick start (simulation — no Wi‑Fi hardware)
 
 ```bash
-git clone https://github.com/salvadordata/Mr.-CrackBot-AI-Nano.git
+git clone https://github.com/salvador-Data/Mr.-CrackBot-AI-Nano.git
 cd Mr.-CrackBot-AI-Nano
 python -m venv .venv
 source .venv/bin/activate   # Windows: .venv\Scripts\activate
@@ -51,4 +51,4 @@ Educational and authorized testing only. The authors are not responsible for mis
 
 ## Contributing
 
-Open an issue or PR on [GitHub](https://github.com/salvadordata/Mr.-CrackBot-AI-Nano).
+Open an issue or PR on [GitHub](https://github.com/salvador-Data/Mr.-CrackBot-AI-Nano).
