@@ -8,6 +8,17 @@ Mr. CrackBot AI Nano is a Jetson Nano–oriented project for **authorized** Wi�
 
 Part of the **Hacker Planet** toolkit → [CyberThreatGotchi ecosystem](https://github.com/salvador-Data/cyberThreatGotchi/blob/main/docs/ECOSYSTEM.md).
 
+![CrackBot in the stack](https://raw.githubusercontent.com/salvador-Data/cyberThreatGotchi/main/docs/images/og-crackbot.png)
+
+| Project | Role |
+|---------|------|
+| [CyberThreatGotchi](https://github.com/salvador-Data/cyberThreatGotchi) | Defensive edge sensor + audit logs |
+| [Bjorn](https://github.com/salvador-Data/Bjorn) | Pi assessment |
+| **Mr.-CrackBot-AI-Nano** (this repo) | Authorized lab wordlists |
+| [M5_OS-Cardputer](https://github.com/salvador-Data/M5_OS-Cardputer) | Portable UI |
+
+CrackBot stays in the **lab VLAN**. CTG monitors the **production/homelab edge** — complementary, not interchangeable.
+
 ## Features (target)
 
 - Heuristic + optional AI wordlist generation (`MR_CRACKBOT_USE_AI=1` + `requirements-jetson.txt`)
